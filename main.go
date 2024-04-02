@@ -55,7 +55,7 @@ func main() {
 
 	containerID := os.Getenv("HOSTNAME")
 	if containerID == "" {
-		containerID = "World"
+		containerID = "Unknown"
 	}
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -73,7 +73,7 @@ func main() {
 		w.WriteHeader(http.StatusOK)
 	})
 
-	log.Println("Start hw server on port", port)
+	log.Printf("[%s] Starting debug-container server on port %s\n", containerID, port)
 	err := http.ListenAndServe(port, nil)
 	if err != nil {
 		log.Fatal(err)
