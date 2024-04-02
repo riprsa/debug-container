@@ -1,10 +1,14 @@
-# Debug Docker container
+# 🐳🔧 A tiny debug Docker image
 
-The goal of this project is to create a tiny, almost empty Docker container for debugging purposes.
+<img width="686" alt="image" src="https://github.com/riprsa/debug-container/assets/44776391/a8f1d801-e191-4588-b502-6cf6468f5e7e">
 
 ## Overview
 
-While it is possible to use this container as a standalone container, I use it with Docker Compose:
+Less than 10MB image for debug purposes. You can use this image to create tens of containers while exploring Traefik or similar systems.
+
+### Setup
+
+Docker Compose
 
 ```yml
 services:
@@ -19,3 +23,13 @@ services:
 ```
 
 By default, the container assumes its ID via `HOSTNAME`. However, you can override it. [Read more](https://docs.docker.com/network/#ip-address-and-hostname)
+
+### Usage
+
+You can use an HTTP client to make a request to the container. It sends an HTML page for GET requests and JSON for other methods. JSON signtaure is:
+
+```json
+{
+  "container_id": "your_container_id"
+}
+```
